@@ -10,16 +10,16 @@ echo "          4. Monitorar Uso de Memória RAM         "
 echo "          5. Sair                                 "
 read -p "Escolha uma das opções: " opcao
 
-if [[$opcao -eq 1]]; then
+if [[ "$opcao" -eq 1 ]]; then
     echo "Carregando..."
-elif [[$opcao -eq 2]]; then
+elif [[ "$opcao" -eq 2 ]]; then
     echo "Carregando..."
-elif [[$opcao -eq 3]]; then
+elif [[ "$opcao" -eq 3 ]]; then
     echo "Carregando..."
-elif [[$opcao -eq 4]]; then
+elif [[ "$opcao" -eq 4 ]]; then
     echo "Carregando..."
     monitorarRam
-elif [[$opcao -eq 5]]; then
+elif [[ "$opcao" -eq 5]]; then
     echo "Saindo..."
     exit 0
 else
