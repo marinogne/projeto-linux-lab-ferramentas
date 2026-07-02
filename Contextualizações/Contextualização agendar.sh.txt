@@ -1,0 +1,30 @@
+
+Bibliografia utilizada além do material de aula:
+
+https://www.hostgator.com.br/blog/cron-job-guia-completo-para-automatizar-tarefas/
+
+https://pt.stackoverflow.com/questions/369953/agendar-tarefa-no-crontab-pelo-script-sh
+
+https://www.locaweb.com.br/ajuda/wiki/sed-linux/
+
+https://www.reddit.com/r/linuxadmin/comments/edvhvi/how_to_tell_if_there_are_updates_available/?tl=pt-br
+
+https://www.locaweb.com.br/ajuda/wiki/apt-update/
+
+https://www.vivaolinux.com.br/dica/Desvendando-o-comando-DATE/
+
+https://www.reddit.com/r/linuxquestions/comments/11yk60h/how_to_pass_a_variable_to_the_date_command/
+
+
+
+Uso de IA:
+
+Usei o chatGPT três vezes para verificar e corrigir a sintaxe do script. Correções e verificações:
+
+	Corrigiu read -p "..." $variavel para read -p "..." variável;
+	Corrigiu #!usr/bin/env bash para #!/usr/bin/env bash;
+	Esqueci um then no if;
+	Descobri que uma versão anterior do comando para o crontab estava errado, mas fiz a correção de acordo com a bibliografia encontrada;
+	Arrumou o %date para $(date); 
+	Arrumou $horario para “$horario”;
+		Fez o mesmo para horarioFormatado em echo, mas com os \\ para ficar válido.
