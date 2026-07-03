@@ -23,3 +23,19 @@ else
 	echo "$minutos $hora $dia * * ~/agendarTarefa/atualizarProgramas.sh \"$horarioFormatado\"" >> /etc/crontab;
 	#Esse arquivo tem a função que consulta o sistema e recebe uma lista de software para atualizar e os atualiza
 fi
+
+#verificando se o comando de monitoramento está instalado
+command -v accton
+if [ $? -ne 0 ]
+then
+        #instala o monitarador, ativa ele e intala o logrotate semanal
+	echo "Digite sua senha para ativar o monitorador:"
+        sudo apt install acct
+        accton on
+	echo "Digite sua senha para ativar o rotacionamento de logs semanal:"
+        sudo apt install logrotate
+
+        #definindo uma atualização diária dos programas mais usados às 20:00
+	echo "Digite sua senha para configurar o monitoramento diário"
+        sudo sh -c 'echo "0 20 * * * ./Monitorador.sh" >> /etc/crontab'
+fi
