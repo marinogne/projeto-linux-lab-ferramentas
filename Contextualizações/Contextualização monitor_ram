@@ -2,6 +2,8 @@ Fontes de pesquisa:
 https://www.monolitonimbus.com.br/matematica-com-shell-script/
 https://www.shellscriptx.com/2016/12/trabalhando-com-funcoes.html
 https://www.maiconschmitz.com.br/blog/2016/03/30/exibindo-notificacoes-desktop-via-shell-script/
+https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/
+https://man7.org/linux/man-pages/man1/ps.1.html
 
 Usei IA para me auxiliar na parte de pegar a coluna correta e tratar ela para porcentagem
 ->    porcent_total=$(free | awk '/^Mem:/ {printf "%.0f", $3/$2 * 100}') 
