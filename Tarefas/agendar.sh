@@ -17,9 +17,9 @@ agendarAtualizacao(){
 	#Se existe, exclui e adiciona o novo agendamento
 	if grep -q "atualizarProgramas.sh" /etc/crontab
 	then
-		sudo sed -i '/atualizarProgramas.sh/d' /etc/crontab;
-
-		echo "$minutos $hora $dia * * $(whoami) ~/atualizarProgramas.sh \"$horarioFormatado\"" | sudo tee -a /etc/crontab > /dev/null;
+		grep -q atualizarProgramas.sh /etc/crontab | sed /etc/crontab;
+	
+		echo "$minutos $hora $dia * * ~/agendarTarefa/atualizarProgramas.sh \"$horarioFormatado\"" >> /etc/crontab;
 	else
 		#Se não existe, só adiciona o novo agendamento
 		echo "$minutos $hora $dia * * $(whoami) ~/atualizarProgramas.sh \"$horarioFormatado\"" | sudo tee -a /etc/crontab > /dev/null;
