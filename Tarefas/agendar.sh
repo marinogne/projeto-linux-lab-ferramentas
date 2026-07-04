@@ -19,10 +19,10 @@ agendarAtualizacao(){
 	then
 		grep -q atualizarProgramas.sh /etc/crontab | sed /etc/crontab;
 	
-		echo "$minutos $hora $dia * * ~/agendarTarefa/atualizarProgramas.sh \"$horarioFormatado\"" >> /etc/crontab;
+		echo "$minutos $hora $dia * * ~/atualizarProgramas.sh \"$horarioFormatado\"" >> /etc/crontab;
 	else
 		#Se não existe, só adiciona o novo agendamento
-		echo "$minutos $hora $dia * * $(whoami) ~/atualizarProgramas.sh \"$horarioFormatado\"" | sudo tee -a /etc/crontab > /dev/null;
+		echo "$minutos $hora $dia * * ~/atualizarProgramas.sh \"$horarioFormatado\"" | sudo tee -a /etc/crontab > /dev/null;
 		#Esse arquivo tem a função que consulta o sistema e recebe uma lista de software para atualizar e os atualiza
 	fi
 
