@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+#pede a senha sudo ao inicializar o main.sh
+sudo -v
+( while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null & )
+
 source "./Tarefas/agendar.sh"
 source "./Tarefas/atualizarProgramas.sh"
 source "./Tarefas/Monitorador.sh"
@@ -30,6 +34,7 @@ elif [[ "$opcao" -eq 4 ]]; then
     echo "Carregando..."
     monitorarRam
 elif [[ "$opcao" -eq 5 ]]; then
+    sleep 5
     echo "Saindo..."
     exit 0
 else
