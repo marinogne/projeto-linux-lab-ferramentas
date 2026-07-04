@@ -6,8 +6,8 @@
 
 agendarAtualizacao(){
 	read -p "Informe o dia da atualização mensal: " dia;
-	read -p "Informe o horário da atualização (apenas horas, sem minutos):" hora;
-	read -p "Informe os minutos" minutos;
+	read -p "Informe o horário da atualização 0-23 (apenas horas, sem minutos): " hora;
+	read -p "Informe os minutos 1-59: " minutos;
 
 	segundos=00;
 	horario="$dia $hora:$minutos:$segundos";
@@ -15,7 +15,7 @@ agendarAtualizacao(){
 
 	#Verifica no crontab se já existe um agendamento anterior dessa tarefa
 	#Se existe, exclui e adiciona o novo agendamento
-	if [[ grep -q ~/Tarefas/atualizarProgramas.sh /etc/crontab ]]
+	if grep -q "/atualizarProgramas.sh" /etc/crontab
 	then
 		grep -q atualizarProgramas.sh /etc/crontab | sed /etc/crontab;
 		
