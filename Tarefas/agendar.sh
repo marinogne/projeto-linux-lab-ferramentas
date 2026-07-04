@@ -7,22 +7,22 @@
 agendarAtualizacao(){
 	read -p "Informe o dia da atualização mensal: " dia;
 	read -p "Informe o horário da atualização 0-23 (apenas horas, sem minutos): " hora;
-	read -p "Informe os minutos 1-59: " minutos;
+	read -p "Informe os minutos 0-59: " minutos;
 
 	segundos=00;
-	horario="$dia $hora:$minutos:$segundos";
+	horario="$(date +%Y)-$(date +%m)-$dia $hora:$minutos:$segundos";
 	horarioFormatado=$(date -d "$horario" "+%d %H:%M:%S");
 
 	#Verifica no crontab se já existe um agendamento anterior dessa tarefa
 	#Se existe, exclui e adiciona o novo agendamento
-	if grep -q "/atualizarProgramas.sh" /etc/crontab
+	if grep -q "atualizarProgramas.sh" /etc/crontab
 	then
-		grep -q atualizarProgramas.sh /etc/crontab | sed /etc/crontab;
-		
-		echo "$minutos $hora $dia * * ~/agendarTarefa/atualizarProgramas.sh \"$horarioFormatado\"" >> /etc/crontab;
+		sudo sed -i '/atualizarProgramas.sh/d' /etc/crontab;
+
+		echo "$minutos $hora $dia * * ~/agendarTarefa/atualizarProgramas.sh \"$horarioFormatado\"" | sudo tee -a /etc/crontab > /dev/null;
 	else
 		#Se não existe, só adiciona o novo agendamento
-		echo "$minutos $hora $dia * * ~/agendarTarefa/atualizarProgramas.sh \"$horarioFormatado\"" >> /etc/crontab;
+		echo "$minutos $hora $dia * * ~/agendarTarefa/atualizarProgramas.sh \"$horarioFormatado\"" | sudo tee -a /etc/crontab > /dev/null;
 		#Esse arquivo tem a função que consulta o sistema e recebe uma lista de software para atualizar e os atualiza
 	fi
 
