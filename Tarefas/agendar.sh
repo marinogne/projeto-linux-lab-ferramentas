@@ -6,23 +6,26 @@
 
 agendarAtualizacao(){
 	read -p "Informe o dia da atualização mensal: " dia;
-	read -p "Informe o horário da atualização 00-23 (apenas horas, sem minutos): " hora;
-	read -p "Informe os minutos 00-59: " minutos;
+	read -p "Informe o horário da atualização 0-23 (apenas horas, sem minutos): " hora;
+	read -p "Informe os minutos 0-59: " minutos;
 
 	segundos=00;
 	horario="$(date +%Y)-$(date +%m)-$dia $hora:$minutos:$segundos";
 	horarioFormatado=$(date -d "$horario" "+%d %H:%M:%S");
 
+	diretorio=$(pwd)
+	diretorio=$(echo ${diretorio/agendar.sh/atualizarProgramas.sh})
+
 	#Verifica no crontab se já existe um agendamento anterior dessa tarefa
 	#Se existe, exclui e adiciona o novo agendamento
 	if grep -q "atualizarProgramas.sh" /etc/crontab
 	then
-		sudo sed -i '/atualizarProgramas.sh/d' /etc/crontab;
+		grep -q atualizarProgramas.sh /etc/crontab | sed /etc/crontab;
 	
-		echo "$minutos $hora $dia * * $HOME/projeto-linux/Tarefas/atualizarProgramas.sh \"$horarioFormatado\"" | sudo tee -a /etc/crontab
+		echo "$minutos $hora $dia * * $diretorio \"$horarioFormatado\"" >> /etc/crontab;
 	else
 		#Se não existe, só adiciona o novo agendamento
-		echo "$minutos $hora $dia * * $HOME/projeto-linux/Tarefas/atualizarProgramas.sh \"$horarioFormatado\"" | sudo tee -a /etc/crontab
+		echo "$minutos $hora $dia * * $diretorio \"$horarioFormatado\"" >> /etc/crontab;
 		#Esse arquivo tem a função que consulta o sistema e recebe uma lista de software para atualizar e os atualiza
 	fi
 
@@ -30,10 +33,10 @@ agendarAtualizacao(){
 	command -v accton
 	if [ $? -ne 0 ]
 	then
-			#instala o monitorador, ativa ele e intala o logrotate semanal
+			#instala o monitarador, ativa ele e intala o logrotate semanal
 		echo "Digite sua senha para ativar o monitorador:"
 			sudo apt install acct
-			sudo accton on
+			accton on
 		echo "Digite sua senha para ativar o rotacionamento de logs semanal:"
 			sudo apt install logrotate
 
