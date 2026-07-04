@@ -3,9 +3,9 @@
 # verifiva o uso da memoria ram total e de cada aplicativo em processo
 # se passar do limite de ram, vai gerar um arquivo de log com alerta, e um balao de alerta
 
-LIMITE_RAM_TOTAL=80     # porcentagem da ram total que vai disparar o alerta
-LIMITE_RAM_PROCESSO=20    # porcentagem da ram do processo especifico que vai disparar o alerta
-INTERVALO=5                # intervalo em segundos da verificacao
+LIMITE_RAM_TOTAL=80     
+LIMITE_RAM_PROCESSO=20   
+INTERVALO=5               
 LOG_FILE="$HOME/monitor_ram.log"
 
 # funcao para a mensagem de alerta, é salvo no arquivo de log, e verifica se o notify send existe para que a mensagem seja exibida em notificacao
@@ -33,7 +33,7 @@ monitorarRam(){
 	while true
 	do
 		# procura o uso da memoria e a linha que comeca com "mem", e calcula pra porcentagem
-		# esse awk vai permitir pegar o valor e ja calcular a porcentagem, o sed nao funcionaria nesse caso porque nao faz conta de forma nativa e deixaria bem mais complicado
+		# esse awk vai permitir pegar o valor e ja calcular a porcentagem
 			porcent_total=$(free | awk '/^Mem:/ {printf "%.0f", $3/$2 * 100}')
 
 			if [[ $porcent_total -ge $LIMITE_RAM_TOTAL ]]
@@ -44,7 +44,7 @@ monitorarRam(){
 		# lista o que esta em processo, mostrando o id, a % de memoria e o nome do maior pro menor em uso de memoria
 			ps -eo pid,%mem,comm --sort=-%mem | tail -n +2 | while read -r pid mem comm
 			do
-				#pelo que parece o bash nao calcula ponto flutuante, e eu nao entendi como que faz, então substitui o . e o que vier depois por nada quando ele for ler a memoria usando o sed
+				
 			mem_inteiro=$(echo "$mem" | sed 's/\..*//')
 			
 				: "${mem_inteiro:=0}"

@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-source "./tarefas/monitor_ram2.sh"
+source "./Tarefas/agendar.sh"
+source "./Tarefas/atualizarProgramas.sh"
+source "./Tarefas/Monitorador.sh"
+source "./Tarefas/bloqueiouso.sh"
+source "./Tarefas/monitora_ram.sh"
+
 
 echo "=================================================="
 echo "          1. Configurar Agendamento               "
@@ -13,14 +18,19 @@ read -p "Escolha uma das opções: " opcao
 
 if [[ "$opcao" -eq 1 ]]; then
     echo "Carregando..."
+    agendarAtualizacao
 elif [[ "$opcao" -eq 2 ]]; then
     echo "Carregando..."
+    monitorador
+    atualizarProgramas
 elif [[ "$opcao" -eq 3 ]]; then
     echo "Carregando..."
+    bloqueioUso
 elif [[ "$opcao" -eq 4 ]]; then
     echo "Carregando..."
     monitorarRam
-elif [[ "$opcao" -eq 5]]; then
+elif [[ "$opcao" -eq 5 ]]; then
+    sleep 5
     echo "Saindo..."
     exit 0
 else
