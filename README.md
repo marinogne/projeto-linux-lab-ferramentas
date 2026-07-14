@@ -1,4 +1,4 @@
-# Pensamento de Software:
+9# Pensamento de Software:
 >  Um Sistema de Agendamento, Gerenciamento e Monitoramento de Software.
 
 ## Descrição
@@ -65,14 +65,11 @@ projeto-linux/
 
 > **Observação:** as opções 1 e 2 utilizam `sudo apt install`, então pode ser solicitada a senha do usuário durante a execução.
 
-### Exemplo de Execução
-
-
-## Divisão de Módulos (Equipe)
+## Divisão de Tarefas (Equipe)
 
 | Membro | Tarefa | Responsabilidade |
 |---|---|---|
-| Julia | Tempo e Checagem | Agendamento via cron e busca da lista de softwares a atualizar |
+| Julia | Tempo e Checagem | Agendamento via cron e busca da lista de softwares a atualizar, vídeo de funcionamento do projeto|
 | Felipe | Inteligência de Atualização e Testes | Identificação dos programas mais usados e execução das atualizações |
 | Luana | Restrição de Uso | Bloqueio de softwares por horário e encerramento de processos |
 | Mariana | Recursos, Alertas e Documentação | Monitoramento de RAM, alertas e organização do repositório |
