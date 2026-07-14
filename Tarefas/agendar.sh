@@ -23,9 +23,11 @@ agendarAtualizacao(){
 		grep -q atualizarProgramas.sh /etc/crontab | sed /etc/crontab;
 	
 		echo "$minutos $hora $dia * * $diretorio \"$horarioFormatado\"" >> /etc/crontab;
+		echo "Tarefa agendada."
 	else
 		#Se não existe, só adiciona o novo agendamento
 		echo "$minutos $hora $dia * * $diretorio \"$horarioFormatado\"" >> /etc/crontab;
+		echo "Tarefa agendada."
 		#Esse arquivo tem a função que consulta o sistema e recebe uma lista de software para atualizar e os atualiza
 	fi
 
@@ -43,5 +45,6 @@ agendarAtualizacao(){
 			#definindo uma atualização diária dos programas mais usados às 20:00
 		echo "Digite sua senha para configurar o monitoramento diário"
 			sudo sh -c 'echo "0 20 * * * ./Monitorador.sh" >> /etc/crontab'
+		echo "Monitoramento de softwares mais usados configurado."
 	fi
 }
