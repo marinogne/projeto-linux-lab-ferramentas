@@ -13,8 +13,7 @@ agendarAtualizacao(){
 	horario="$(date +%Y)-$(date +%m)-$dia $hora:$minutos:$segundos";
 	horarioFormatado=$(date -d "$horario" "+%d %H:%M:%S");
 
-	diretorio=$(pwd)
-	diretorio=$(echo ${diretorio/agendar.sh/atualizarProgramas.sh})
+	diretorio="$(pwd)/Tarefas/atualizarProgramas.sh"
 
 	#Verifica no crontab se já existe um agendamento anterior dessa tarefa
 	#Se existe, exclui e adiciona o novo agendamento
@@ -23,7 +22,7 @@ agendarAtualizacao(){
 		sudo sed -i '/atualizarProgramas\.sh/d' /etc/crontab
 	
 		echo "$minutos $hora $dia * * $diretorio \"$horarioFormatado\"" | sudo tee -a /etc/crontab > /dev/null
-		echo "Tarefa agendada."
+		echo "Agendamento antigo excluído. A tarefa foi agendada com as novas configurações."
 	else
 		#Se não existe, só adiciona o novo agendamento
 		echo "$minutos $hora $dia * * $diretorio \"$horarioFormatado\"" | sudo tee -a /etc/crontab > /dev/null
