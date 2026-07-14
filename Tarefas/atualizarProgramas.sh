@@ -8,3 +8,4 @@ atualizarProgramas(){
 		sudo apt install "$update"
 	done
 }
+echo $(date) >> timestamp.txt

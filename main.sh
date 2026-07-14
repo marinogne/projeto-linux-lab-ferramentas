@@ -30,8 +30,8 @@ elif [[ "$opcao" -eq 4 ]]; then
     echo "Carregando..."
     monitorarRam
 elif [[ "$opcao" -eq 5 ]]; then
-    sleep 5
     echo "Saindo..."
+    sleep 5
     exit 0
 else
     echo "Opção inválida!"
